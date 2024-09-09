@@ -1,0 +1,49 @@
+type Item {
+  id: ID
+  name: String
+  createdAt: String
+  updatedAt: String
+}
+
+input GetItemInput {
+  id: ID!
+}
+
+input ListItemsInput {
+  limit: Int
+  nextToken: String
+}
+
+input CreateItemInput {
+  name: String!
+}
+
+input UpdateItemInput {
+  id: ID!
+  name: String
+}
+
+input DeleteItemInput {
+  id: ID!
+}
+
+type ListItemsResult {
+  items: [Item!]!
+  nextToken: String
+}
+
+type Query {
+  getItem(input: GetItemInput): Item!
+  listItems(input: ListItemsInput): ListItemsResult!
+}
+
+type Mutation {
+  createItem(input: CreateItemInput!): Item!
+  updateItem(input: UpdateItemInput!): Item!
+  deleteItem(input: DeleteItemInput!): Item!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
